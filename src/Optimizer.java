@@ -40,11 +40,13 @@ public class Optimizer {
 		keys.add(new Key(x, d));
 	}
 	
-	/**returns keys ordered alphabetically, references the Collections library**/
+	/**returns keys ordered ascending-order/alphabetically, references the Collections library**/
 	public Key[] orderKeys() {
 		Collections.sort(keys);
 		return keys.toArray(new Key[keys.size()]);
 	}
+	
+	/**first empty optimize method call, sets recursive call counter to 0, orders all of the keys, and makes a tree matrix to store visited trees**/
 	
 	public Tree optimize() {
 		calls = 0;
@@ -69,10 +71,10 @@ public class Optimizer {
         if(rightChild <= leftChild){
         	if(leftChild == rightChild){
         		Tree tempTree = new Tree(null);
-        		optimalTree = new Tree(listedKeys[rightChild],tempTree.getRoot(),tempTree.getRoot());
+        		optimalTree = new Tree(listedKeys[rightChild],tempTree.getRoot(),tempTree.getRoot()); /**no two nodes can be equal, pick one and make tree from it**/
         		optimalTree.setCost(costCounter);
             }
-        	else return new Tree(null);
+        	else return new Tree(null); /**fails to meet binary structure, thus tree is null**/
         }
 
         else {

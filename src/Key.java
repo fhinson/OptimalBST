@@ -8,6 +8,7 @@ public class Key implements Comparable<Key>{
 	private String name;
 	private int numericName;
 	private double frequency;
+	private boolean greedyReady;
 	
 	/**construct with null name and 0 frequency**/
 	public Key(){
@@ -35,6 +36,19 @@ public class Key implements Comparable<Key>{
 		this.frequency = d;
 	}
 	
+	/**construct with name and frequency**/
+	public Key(String name, double d, boolean greedyReady){
+		this.name = name;
+		this.frequency = d;
+		this.greedyReady = greedyReady;
+	}
+	
+	public Key(int numericName, double d, boolean greedyReady){
+		this.numericName = numericName;
+		this.frequency = d;
+		this.greedyReady = greedyReady;
+	}
+	
 	/**accessor for name**/
 	public String getName(){
 		return name;
@@ -51,9 +65,11 @@ public class Key implements Comparable<Key>{
 	
 	/**compare to another key based on name**/
 	public int compareTo(Key key){
+		if(this.greedyReady)
+			return new Double(this.getFrequency()).compareTo(key.getFrequency());
 		if(!(this.name == null))
 			return (this.name.compareTo(key.getName()));
-		return ((new Integer(this.numericName)).compareTo(key.getNumericName()));
+		return new Integer(this.numericName).compareTo(key.getNumericName());
 	}
 	
 	/**return just the name or numericName for readability**/
@@ -62,4 +78,9 @@ public class Key implements Comparable<Key>{
 			return name;
 		return Integer.toString(numericName);
 	}
+
+	public void setGreedyReady(boolean b) {
+		this.greedyReady = b;
+	}
+
 }
