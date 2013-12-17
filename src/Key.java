@@ -8,7 +8,7 @@ public class Key implements Comparable<Key>{
 	private String name;
 	private int numericName;
 	private double frequency;
-	private boolean greedyReady;
+	private boolean prioritizeFrequency;
 	
 	/**construct with null name and 0 frequency**/
 	public Key(){
@@ -37,16 +37,16 @@ public class Key implements Comparable<Key>{
 	}
 	
 	/**construct with name and frequency**/
-	public Key(String name, double d, boolean greedyReady){
+	public Key(String name, double d, boolean prioritizeFrequency){
 		this.name = name;
 		this.frequency = d;
-		this.greedyReady = greedyReady;
+		this.prioritizeFrequency = prioritizeFrequency;
 	}
 	
-	public Key(int numericName, double d, boolean greedyReady){
+	public Key(int numericName, double d, boolean prioritizeFrequency){
 		this.numericName = numericName;
 		this.frequency = d;
-		this.greedyReady = greedyReady;
+		this.prioritizeFrequency = prioritizeFrequency;
 	}
 	
 	/**accessor for name**/
@@ -65,7 +65,7 @@ public class Key implements Comparable<Key>{
 	
 	/**compare to another key based on name**/
 	public int compareTo(Key key){
-		if(this.greedyReady)
+		if(this.prioritizeFrequency)
 			return new Double(this.getFrequency()).compareTo(key.getFrequency());
 		if(!(this.name == null))
 			return (this.name.compareTo(key.getName()));
@@ -79,8 +79,8 @@ public class Key implements Comparable<Key>{
 		return Integer.toString(numericName);
 	}
 
-	public void setGreedyReady(boolean b) {
-		this.greedyReady = b;
+	public void setPrioritizeFrequency(boolean b) {
+		this.prioritizeFrequency = b;
 	}
 
 }

@@ -8,6 +8,7 @@ public class Tree extends Node {
 	
 	private Node root;
 	private double cost;
+	private Node nilNode = new Node(null);
 	
 	/**construct empty tree**/
 	public Tree() {
@@ -55,6 +56,38 @@ public class Tree extends Node {
 		return determineHeight(root);
 	}
 	
+	public void greedyInsert(Key newItem) {
+		   if( root == null ) {
+		      root = new Node( newItem );
+		      return;
+		   }
+		   Node runner; 
+		   runner = root;
+		   while (true) {
+		      newItem.setPrioritizeFrequency(false);
+		      if( newItem.compareTo(runner.getKey()) < 0 ) {
+		         if( runner.getLeftChild() == null || runner.getLeftChild() == nilNode) {
+		            runner.setLeftChild(new Node( newItem ));
+		            runner.getLeftChild().setLeftChild(nilNode);
+		            runner.getLeftChild().setRightChild(nilNode);
+		            return; 
+		         }
+		         else
+		            runner = runner.getLeftChild();
+		      }
+		      else {
+		         if( runner.getRightChild() == null || runner.getLeftChild() == nilNode) {
+		            runner.setRightChild(new Node( newItem ));
+		            runner.getRightChild().setLeftChild(nilNode);
+		            runner.getRightChild().setRightChild(nilNode);
+		            return; 
+		         }
+		         else
+		            runner = runner.getRightChild();
+		      }
+		   } 
+		}
+	
 	/**print tree level by level**/
 	public void print(int depth) {
 	    for (int i = 1; i <= depth; i++) {
@@ -77,5 +110,9 @@ public class Tree extends Node {
 	        return leftStr + rightStr;
 	    }
 	    else return "";
+	}
+
+	public void setRoot(Node root) {
+		this.root = root;
 	}
 }

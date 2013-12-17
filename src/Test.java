@@ -8,30 +8,44 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		Optimizer test = new Optimizer();
+		Optimizer figure_10_47_greedy = new Optimizer("Greedy");
+		System.out.println("Figure 10.47: " + figure_10_47_greedy.getOptimizeType() + " Implementation");
 		
-		test.insertKey("a", 0.22);
-        test.insertKey("am", 0.18);
-        test.insertKey("and", 0.20);
-        test.insertKey("egg", 0.05);
-        test.insertKey("if", 0.25);
-        test.insertKey("the", 0.02);
-        test.insertKey("two", 0.08);
+		figure_10_47_greedy.insertKey("a", 0.22);
+        figure_10_47_greedy.insertKey("am", 0.18);
+        figure_10_47_greedy.insertKey("and", 0.20);
+        figure_10_47_greedy.insertKey("egg", 0.05);
+        figure_10_47_greedy.insertKey("if", 0.25);
+        figure_10_47_greedy.insertKey("the", 0.02);
+        figure_10_47_greedy.insertKey("two", 0.08);
         
-        test.setTabling(true);
-        Tree bestTree = test.optimize();
-        bestTree.print(4);
+        figure_10_47_greedy.optimize();
+        figure_10_47_greedy.getOptimalTree().print(figure_10_47_greedy.getOptimalTree().getHeight());
+        
+        Optimizer figure_10_47_dynamic = new Optimizer("Dynamic");
+        System.out.println("Figure 10.47: " + figure_10_47_dynamic.getOptimizeType() + " Implementation");
+		
+		figure_10_47_dynamic.insertKey("a", 0.22);
+        figure_10_47_dynamic.insertKey("am", 0.18);
+        figure_10_47_dynamic.insertKey("and", 0.20);
+        figure_10_47_dynamic.insertKey("egg", 0.05);
+        figure_10_47_dynamic.insertKey("if", 0.25);
+        figure_10_47_dynamic.insertKey("the", 0.02);
+        figure_10_47_dynamic.insertKey("two", 0.08);
+        
+        figure_10_47_dynamic.optimize();
+        figure_10_47_dynamic.getOptimalTree().print(figure_10_47_dynamic.getOptimalTree().getHeight());
         
         
-        
+        /*
         for(int i = 1; i <= 100; i++){
         	Optimizer distOpt = new Optimizer();
         	Distributions dist = new Distributions("Random");
         	for(int j = 0; j < dist.getProbabilities().size(); j++){
         		distOpt.insertKey((j+1), dist.getProbabilities().get(j));
         	}
-        	distOpt.setTabling(false);
-        	Tree distOptTree = distOpt.optimize();
+        	distOpt.setGreedy(false);
+        	Tree distOptTree = distOpt.dynamify();
         	System.out.println("CASE " + i);
         	System.out.println("Distribution Type: " + dist.getDistributionType());
         	System.out.println("Total # of Nodes: " + dist.getProbabilities().size());
@@ -40,9 +54,8 @@ public class Test {
         	System.out.println("Overall Cost of Optimal Tree: " + distOptTree.getCost());
         	distOptTree.print(distOptTree.getHeight()-1);
         }
-        
-     
-       
+        */
+           
 	}
 
 }
