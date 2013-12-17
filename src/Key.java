@@ -65,7 +65,7 @@ public class Key implements Comparable<Key>{
 	
 	/**compare to another key based on name**/
 	public int compareTo(Key key){
-		if(this.prioritizeFrequency)
+		if(this.prioritizeFrequency == true)
 			return new Double(this.getFrequency()).compareTo(key.getFrequency());
 		if(!(this.name == null))
 			return (this.name.compareTo(key.getName()));

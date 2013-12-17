@@ -29,6 +29,11 @@ public class Optimizer {
 		return keys;
 	}
 	
+	/**mutator for greedy boolean preference**/
+	 public void setTabling(boolean b) {
+	   tabling = b;
+	 }
+	
 	/**insert a new key with String into keys ArrayList**/
 	public void insertKey(String s, double d) {
 		keys.add(optimizeType.equals("Greedy") ? new Key(s, d, true) : new Key(s, d));
@@ -76,7 +81,7 @@ public class Optimizer {
 		calls = 0;
 		Key[] orderedKeys = orderKeys();
 		Tree[][] visited = new Tree[orderedKeys.length][orderedKeys.length];
-		dynamify(orderedKeys, 0, orderedKeys.length-1, visited);
+		optimalTree = dynamify(orderedKeys, 0, orderedKeys.length-1, visited);
 	}
 	
 	private Tree dynamify(Key[] listedKeys, int leftChild, int rightChild, Tree[][] visited){
@@ -112,7 +117,7 @@ public class Optimizer {
             }
         }
         visited[leftChild][rightChild] = dynamicTree;
-        optimalTree = dynamicTree;
+        
         return dynamicTree;
 	}
 }

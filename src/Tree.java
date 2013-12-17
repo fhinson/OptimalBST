@@ -68,6 +68,7 @@ public class Tree extends Node {
 		      if( newItem.compareTo(runner.getKey()) < 0 ) {
 		         if( runner.getLeftChild() == null || runner.getLeftChild() == nilNode) {
 		            runner.setLeftChild(new Node( newItem ));
+		            //System.out.println("Node " + runner.getKey().getNumericName() + " has left child: " + runner.getLeftChild().getKey().getNumericName() );
 		            runner.getLeftChild().setLeftChild(nilNode);
 		            runner.getLeftChild().setRightChild(nilNode);
 		            return; 
@@ -76,8 +77,9 @@ public class Tree extends Node {
 		            runner = runner.getLeftChild();
 		      }
 		      else {
-		         if( runner.getRightChild() == null || runner.getLeftChild() == nilNode) {
+		         if( runner.getRightChild() == null || runner.getRightChild() == nilNode) {
 		            runner.setRightChild(new Node( newItem ));
+		            //System.out.println("Node " + runner.getKey().getNumericName() + " has right child: " + runner.getRightChild().getKey().getNumericName() );
 		            runner.getRightChild().setLeftChild(nilNode);
 		            runner.getRightChild().setRightChild(nilNode);
 		            return; 

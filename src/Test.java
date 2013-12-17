@@ -38,12 +38,12 @@ public class Test {
         
         
         for(int i = 1; i <= 100; i++){
-        	Optimizer testDistributionGreedy = new Optimizer("Dynamic");
+        	Optimizer testDistributionGreedy = new Optimizer("Greedy");
         	Distributions dist = new Distributions("Random");
         	for(int j = 0; j < dist.getProbabilities().size(); j++){
         		testDistributionGreedy.insertKey((j+1), dist.getProbabilities().get(j));
         	}
-        	
+        	testDistributionGreedy.setTabling(true);
         	testDistributionGreedy.optimize();
         	System.out.println("CASE " + i);
         	System.out.println("Distribution Type: " + dist.getDistributionType());
