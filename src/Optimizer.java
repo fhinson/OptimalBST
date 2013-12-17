@@ -13,6 +13,7 @@ public class Optimizer {
 	private String optimizeType;
 	private Key nilKey = new Key("nil");
 	private Tree optimalTree = new Tree();
+	private boolean tabling = true;
 	
 	public Optimizer(String optimizeType) {
 		this.optimizeType = optimizeType;
@@ -81,6 +82,11 @@ public class Optimizer {
 	private Tree dynamify(Key[] listedKeys, int leftChild, int rightChild, Tree[][] visited){
         calls++;
         Tree dynamicTree = new Tree(nilKey);
+        
+        if(tabling == false && leftChild <= rightChild){
+        	if(visited[leftChild][rightChild] != null)
+        		return visited[leftChild][rightChild];
+        }
 
         double costCounter = 0;
         for(int i = leftChild; i <= rightChild; i++)
