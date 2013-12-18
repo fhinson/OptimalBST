@@ -57,40 +57,67 @@ public class Tree extends Node {
 	}
 	
 	public void greedyInsert(Key key) {
+		int depthCounter = 1;
 		   if( root == null ) {
 		      root = new Node( key );
-		      cost += key.getFrequency();
+		      cost += ((depthCounter) * key.getFrequency());
 		      return;
 		   }
 		   Node current; 
 		   current = root;
+		   
 		   while (true) {
 		      key.setPrioritizeFrequency(false);
 		      if(key.compareTo(current.getKey()) < 0) {
 		         if(current.getLeftChild() == null || current.getLeftChild() == nilNode) {
 		            current.setLeftChild(new Node(key));
-		            cost += key.getFrequency();
+		            cost += ((depthCounter+1) * key.getFrequency());
 		            current.getLeftChild().setLeftChild(nilNode);
 		            current.getLeftChild().setRightChild(nilNode);
 		            return; 
 		         }
-		         else
+		         else{
 		            current = current.getLeftChild();
+		            depthCounter++;
+		         }
 		      }
 		      else {
 		         if(current.getRightChild() == null || current.getRightChild() == nilNode) {
 		            current.setRightChild(new Node(key));
-		            cost += key.getFrequency();
+		            cost += ((depthCounter+1) * key.getFrequency());
 		            current.getRightChild().setLeftChild(nilNode);
 		            current.getRightChild().setRightChild(nilNode);
 		            return; 
 		         }
-		         else
+		         else{
 		            current = current.getRightChild();
+		            depthCounter++;
+		         }
 		      }
 		   } 
 		}
 	
+	
+	public void printLisp(int depth){
+		for(int i = 1; i <= depth; i++){
+			String levelNodes = lispNode(root, i);
+			System.out.print(levelNodes);
+		}
+	}
+	
+	public String lispNode(Node t, int level){
+		if (t == null)
+			return "";
+		if (level == 1)
+			return (t.getKey() == null ? "()" : t.getKey() + "");
+		else if (level > 1) {
+	        String leftStr = lispNode(t.getLeftChild(), level - 1);
+	        String rightStr = lispNode(t.getRightChild(), level - 1);
+	        return leftStr + rightStr;
+	    }
+		else return "";
+	}
+
 	/**print tree level by level**/
 	public void print(int depth) {
 	    for (int i = 1; i <= depth; i++) {
