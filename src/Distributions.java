@@ -58,6 +58,14 @@ public class Distributions {
 					probabilities.add(r);
 				}
 			}
+			Random rng = new Random();
+			if(distributionType.equals("Normal")){
+				for(int i = 0; i < size; i++){
+					double r = rng.nextGaussian()*0.5+0.5;
+					sum+=r;
+					probabilities.add(r);
+				}
+			}
 		}
 		for(int j = 0; j < size; j++){
 			double place = probabilities.get(j);

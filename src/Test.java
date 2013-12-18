@@ -73,11 +73,11 @@ public class Test {
         	testDistribution.getOptimalTree().print(testDistribution.getOptimalTree().getHeight());
         }
         
-        String[] caseTypes = {"Uniform", "Uniform", "HumpAt1", "HumpAt1", "HumpAtN4", "HumpAtN4", "Symmetric", "Symmetric"};
-        System.out.println("4 Distribution Test Cases");
-        int M = 3;
+        String[] caseTypes = {"Uniform", "Uniform", "HumpAt1", "HumpAt1", "HumpAtN4", "HumpAtN4", "Symmetric", "Symmetric", "Normal", "Normal"};
+        System.out.println("5 Distribution Test Cases");
+        int M = 30;
         double previousCost = 0;
-        for(int i = 1; i <= 8; i++){
+        for(int i = 1; i <= 10; i++){
         	Optimizer testDistribution = new Optimizer(i % 2 == 0 ? "Dynamic" : "Greedy");
         	Distributions dist = new Distributions(caseTypes[i-1], M);
         	for(int j = 0; j < dist.getProbabilities().size(); j++)

@@ -145,4 +145,6 @@ public class Tree extends Node {
 	public void setRoot(Node root) {
 		this.root = root;
 	}
+	
+	
 }
