@@ -36,19 +36,19 @@ public class Test {
         figure_10_47_dynamic.optimize();
         figure_10_47_dynamic.getOptimalTree().print(figure_10_47_dynamic.getOptimalTree().getHeight());
         
-        for(int i = 1; i <= 100; i++){
-        	Optimizer testDistributionGreedy = new Optimizer("Dynamic");
-        	Distributions dist = new Distributions("Random");
+        for(int i = 1; i <= 200; i++){
+        	Optimizer testDistribution = new Optimizer(i >= 100 ? "Dynamic" : "Greedy");
+        	Distributions dist = new Distributions("Uniform");
         	for(int j = 0; j < dist.getProbabilities().size(); j++)
-        		testDistributionGreedy.insertKey((j+1), dist.getProbabilities().get(j));
-        	testDistributionGreedy.optimize();
+        		testDistribution.insertKey((j+1), dist.getProbabilities().get(j));
+        	testDistribution.optimize();
         	System.out.println("CASE " + i);
+        	System.out.println("Optimization Type: " + testDistribution.getOptimizeType());
         	System.out.println("Distribution Type: " + dist.getDistributionType());
         	System.out.println("Total # of Nodes: " + dist.getProbabilities().size());
-        	System.out.println("Total # of Recursive Calls: " + testDistributionGreedy.getCalls());
-        	//System.out.println("Ratio of Nodes to Calls: " + ((double)dist.getProbabilities().size() / distOpt.getCalls()));
-        	//System.out.println("Overall Cost of Optimal Tree: " + distOptTree.getCost());
-        	testDistributionGreedy.getOptimalTree().print(testDistributionGreedy.getOptimalTree().getHeight());
+        	System.out.println("Total # of Recursive Calls: " + testDistribution.getCalls());
+        	System.out.println("Overall Cost of Optimal Tree: " + testDistribution.getOptimalTree().getCost());
+        	testDistribution.getOptimalTree().print(testDistribution.getOptimalTree().getHeight());
         }
            
 	}

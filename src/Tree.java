@@ -56,36 +56,37 @@ public class Tree extends Node {
 		return determineHeight(root);
 	}
 	
-	public void greedyInsert(Key newItem) {
+	public void greedyInsert(Key key) {
 		   if( root == null ) {
-		      root = new Node( newItem );
+		      root = new Node( key );
+		      cost += key.getFrequency();
 		      return;
 		   }
-		   Node runner; 
-		   runner = root;
+		   Node current; 
+		   current = root;
 		   while (true) {
-		      newItem.setPrioritizeFrequency(false);
-		      if( newItem.compareTo(runner.getKey()) < 0 ) {
-		         if( runner.getLeftChild() == null || runner.getLeftChild() == nilNode) {
-		            runner.setLeftChild(new Node( newItem ));
-		            //System.out.println("Node " + runner.getKey().getNumericName() + " has left child: " + runner.getLeftChild().getKey().getNumericName() );
-		            runner.getLeftChild().setLeftChild(nilNode);
-		            runner.getLeftChild().setRightChild(nilNode);
+		      key.setPrioritizeFrequency(false);
+		      if(key.compareTo(current.getKey()) < 0) {
+		         if(current.getLeftChild() == null || current.getLeftChild() == nilNode) {
+		            current.setLeftChild(new Node(key));
+		            cost += key.getFrequency();
+		            current.getLeftChild().setLeftChild(nilNode);
+		            current.getLeftChild().setRightChild(nilNode);
 		            return; 
 		         }
 		         else
-		            runner = runner.getLeftChild();
+		            current = current.getLeftChild();
 		      }
 		      else {
-		         if( runner.getRightChild() == null || runner.getRightChild() == nilNode) {
-		            runner.setRightChild(new Node( newItem ));
-		            //System.out.println("Node " + runner.getKey().getNumericName() + " has right child: " + runner.getRightChild().getKey().getNumericName() );
-		            runner.getRightChild().setLeftChild(nilNode);
-		            runner.getRightChild().setRightChild(nilNode);
+		         if(current.getRightChild() == null || current.getRightChild() == nilNode) {
+		            current.setRightChild(new Node(key));
+		            cost += key.getFrequency();
+		            current.getRightChild().setLeftChild(nilNode);
+		            current.getRightChild().setRightChild(nilNode);
 		            return; 
 		         }
 		         else
-		            runner = runner.getRightChild();
+		            current = current.getRightChild();
 		      }
 		   } 
 		}

@@ -15,7 +15,7 @@ public class Distributions {
 	
 	public Distributions(String distributionType){
 		this.distributionType = distributionType;
-		this.size = (int)(Math.random() * 15 + 1);
+		this.size = (int)(Math.random() * 150 + 1);
 		ArrayList<Double> probabilities = new ArrayList<Double>();
 		double sum = 0;
 		double n = (Math.random() * 10000 + 1); //random number that doesn't change
