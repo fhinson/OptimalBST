@@ -1,7 +1,7 @@
 OptimalBST
 ==========
 
-Playing around with Optimizing A Weighted Binary Search Tree.
+Playing around with optimizing a weighted Binary Search Tree.
 
 Explore Greedy/DP Solutions
 
